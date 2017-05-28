@@ -17,8 +17,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".UI.MainActivity">
-
         </activity>
+        <activity android:name=".UI.NotificationMakerActivity">
+        </activity>
+        <activity android:name=".UI.MakeGroupActivity">
+        </activity>
+        <activity android:name=".UI.ViewGroupsActivity">
+        </activity>
+
     </application>
 
 </manifest>
