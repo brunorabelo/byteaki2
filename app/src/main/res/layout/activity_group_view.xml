@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Admins: "/>
+    <ListView
+        android:layout_marginBottom="-200dp"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/users_admins">
+    </ListView>
+
+    <TextView
+        android:layout_marginBottom="-100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Users: "/>
+    <ListView
+        android:layout_marginBottom="-100dp"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/users_group">
+    </ListView>
+
+    <LinearLayout
+        android:layout_marginBottom="-50dp"
+        android:paddingBottom="-50dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <Button
+            android:id="@+id/enviar_not_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/adicionar_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
