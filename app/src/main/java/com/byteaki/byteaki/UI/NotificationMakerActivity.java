@@ -20,6 +20,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.security.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -81,12 +82,11 @@ String groupId;
                 EditText description=(EditText) findViewById(R.id.Ask_Title_Notification);
 
 
-
-
+                Long tsLong = System.currentTimeMillis()/1000;
 
                 FirebaseDatabase.getInstance()
                         .getReference("users_notification/"+FirebaseAuth.getInstance().getCurrentUser().getUid()).push()
-                        .setValue(new NotificationModel(title.getText().toString()
+                        .setValue(new NotificationModel(tsLong,title.getText().toString()
                                 ,description.getText().toString(), FirebaseAuth.
                                 getInstance().getCurrentUser().getUid(),groupId)).addOnCompleteListener(NotificationMakerActivity.this, new OnCompleteListener<Void>() {
                     @Override

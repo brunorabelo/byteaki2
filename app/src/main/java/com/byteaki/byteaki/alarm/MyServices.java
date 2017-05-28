@@ -47,7 +47,8 @@ try {
                             if (map != null) {
                                 for (Map.Entry entry : map.entrySet()) {
                                     Map valu = (HashMap) entry.getValue();
-                                    NotificationModel not = new NotificationModel(((HashMap)entry.getValue()).get("notificationTitle").toString(),
+                                    NotificationModel not = new NotificationModel((Long)((HashMap)entry.getValue()).get("notificationId"),
+                                            (((HashMap)entry.getValue()).get("notificationTitle").toString()),
                                             ((HashMap)(entry.getValue())).get("notificationContent").toString(),
                                             (((HashMap)entry.getValue()).get("notificationUser")).toString(),((HashMap)(entry.getValue())).get("notificationGroup").toString());
 
@@ -98,7 +99,6 @@ try {
     }
 //
     private void showNotification(NotificationModel notificacao) {
-        NotificationModel.cont++;
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(R.drawable.common_full_open_on_phone)
@@ -121,7 +121,7 @@ try {
         mBuilder.setContentIntent(resultPendingIntent);
         NotificationManager mNotificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        mNotificationManager.notify(NotificationModel.cont,mBuilder.build());
+        mNotificationManager.notify(Integer.parseInt(notificacao.getId().toString()),mBuilder.build());
     }
 
 }

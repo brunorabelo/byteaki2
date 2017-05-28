@@ -7,13 +7,16 @@ import java.util.List;
  */
 
 public class NotificationModel {
-    public static int cont=0;
+    private Long notificationId;
     private String notificationTitle;
     private String notificationContent;
     private String notificationUser;
     private String notificationGroup;
 
-    public NotificationModel(String title, String description, String user, String idGroup) {
+    public NotificationModel(Long id, String title, String description, String user, String idGroup) {
+        this.notificationId=id;
+        if(id==null)
+            notificationId=(long)0;
         notificationTitle=title;
         notificationUser=user;
         notificationContent=description;
@@ -50,5 +53,13 @@ public class NotificationModel {
 
     public void setNotificationGroup(String notificationGroup) {
         this.notificationGroup = notificationGroup;
+    }
+
+    public Long getId() {
+        return notificationId;
+    }
+
+    public void setId(Long id) {
+        this.notificationId = id;
     }
 }
