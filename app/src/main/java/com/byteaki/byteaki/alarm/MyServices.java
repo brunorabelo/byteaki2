@@ -41,7 +41,7 @@ try {
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-//                        if()
+//
                         if (dataSnapshot != null) {
                             Map<String, String> map = (Map) dataSnapshot.getValue();
                             if (map != null) {
@@ -98,6 +98,7 @@ try {
     }
 //
     private void showNotification(NotificationModel notificacao) {
+        NotificationModel.cont++;
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(R.drawable.common_full_open_on_phone)
@@ -120,7 +121,7 @@ try {
         mBuilder.setContentIntent(resultPendingIntent);
         NotificationManager mNotificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        mNotificationManager.notify(1,mBuilder.build());
+        mNotificationManager.notify(NotificationModel.cont,mBuilder.build());
     }
 
 }
