@@ -15,7 +15,7 @@
         android:id="@+id/viewgroups"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="View Groups"
         android:layout_below="@+id/makegroup"
         android:layout_toLeftOf="@+id/makenotification"
         android:layout_toStartOf="@+id/makenotification"
@@ -26,7 +26,7 @@
         android:id="@+id/makegroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="Make Group"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/makenotification"
         android:layout_toEndOf="@+id/makenotification"
@@ -37,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="34dp"
-        android:text="Button"
+        android:text="Make Notification"
         android:layout_below="@+id/viewgroups"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>
