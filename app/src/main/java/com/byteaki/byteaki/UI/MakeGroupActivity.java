@@ -1,7 +1,9 @@
-package com.byteaki.byteaki;
+package com.byteaki.byteaki.UI;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.byteaki.byteaki.R;
 
 public class MakeGroupActivity extends AppCompatActivity {
 
