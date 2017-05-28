@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -39,7 +40,7 @@ public class ViewGroupsActivity extends AppCompatActivity {
     public ArrayList<String> arr;
     public ArrayList<String> key;
 
-    public MyAdapter adapter;
+    public ArrayAdapter adapter;
 
 
     @Override
@@ -61,7 +62,7 @@ protected void onCreate(Bundle savedInstanceState) {
                     for (Map.Entry<String, String> entry : map.entrySet()) {
 
                         FirebaseDatabase.getInstance().getReference("groups/" + entry.getKey() + "/name").
-                                addListenerForSingleValueEvent(new ValueEventListener() {
+                                addValueEventListener(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(DataSnapshot dataSnapshot) {
 //                                map2list((Map) dataSnapshot.getValue());
@@ -100,58 +101,21 @@ protected void onCreate(Bundle savedInstanceState) {
     };
     mDatabase.addValueEventListener(listener);
 
-    adapter = new MyAdapter(this,
+    adapter = new ArrayAdapter(this,
             android.R.layout.simple_list_item_1, android.R.id.text1, arr);
-
     ListView listView = (ListView) findViewById(R.id.lv_groups);
     listView.setAdapter(adapter);
 
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-}
-
-
-
-
-
-
-class MyAdapter extends ArrayAdapter{
-
-
-    public MyAdapter(@NonNull Context context, @LayoutRes int resource, @IdRes int textViewResourceId, @NonNull List objects) {
-        super(context, resource, textViewResourceId, objects);
-    }
-
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-       super.getView(position,convertView,parent);
-        View row = convertView;
-
-        /* ...Code for holder and so on... */
-        if(row!=null) {
-            row.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    Intent a = new Intent(ViewGroupsActivity.this, NotificationMakerActivity.class);
-
-                    getIntent().putExtra("group_name", key.get(view.getId()));
-
-
-                }
-            });
-        }
-
-
-        return row;
-
-    }
-
-
-//    @
-//    protected onItemClick
-
+                Intent a = new Intent(ViewGroupsActivity.this, NotificationMakerActivity.class);
+                a.putExtra("group_name", key.get(i));
+                startActivity(a);
+            }
+        });
 
 
 
