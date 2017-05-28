@@ -1,6 +1,7 @@
 package com.byteaki.byteaki.UI;
 
 import android.support.annotation.NonNull;
+import android.content.Intent;
 import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -47,8 +48,8 @@ public class MakeGroupActivity extends AppCompatActivity {
                     }
                 });
 
-
-
+                Intent main = new Intent (MakeGroupActivity.this, MainActivity.class);
+                startActivity(main);
             }
         });
 

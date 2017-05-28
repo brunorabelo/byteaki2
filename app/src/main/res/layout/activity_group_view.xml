@@ -11,6 +11,7 @@
         android:layout_marginBottom="-200dp"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:theme="@style/ThemeOverlay.MyDarkButton"
         android:id="@+id/users_admins">
     </ListView>
 
@@ -23,6 +24,7 @@
         android:layout_marginBottom="-100dp"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:theme="@style/ThemeOverlay.MyDarkButton"
         android:id="@+id/users_group">
     </ListView>
 
@@ -33,12 +35,16 @@
         android:layout_height="40dp">
         <Button
             android:id="@+id/enviar_not_group"
+            android:text="ENVIAR NOTIFICAÇÃO"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.MyDarkButton"/>
         <Button
             android:id="@+id/adicionar_user"
+            android:text="NEW USER"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.MyDarkButton"/>
 
     </LinearLayout>
 
