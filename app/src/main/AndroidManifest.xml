@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.byteaki.byteaki">
 
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -25,6 +26,20 @@
         <activity android:name=".UI.ViewGroupsActivity">
         </activity>
 
+        <receiver
+            android:name=".alarm.ReceptorBoot"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".alarm.AlarmReceiver" />
+
+
+        <service
+            android:name=".alarm.MyServices"
+            android:enabled="true" />
     </application>
+
 
 </manifest>

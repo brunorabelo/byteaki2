@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.byteaki.byteaki.R;
+import com.byteaki.byteaki.alarm.AlarmClass;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
@@ -15,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        AlarmClass.iniciarAlarme(this);
 
         Button fab = (Button) findViewById(R.id.sendnotification);
 
@@ -22,9 +24,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent a = new Intent(MainActivity.this,NotificationMakerActivity.class);
+                a.putExtra("group_name","Zgzz2AXweKWZQIVl882aL73xOn72");
                 startActivity(a);
             }
         });
+
+
+
 
 
         Button criar_grupo = (Button) findViewById(R.id.makegroup);
@@ -50,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         if(FirebaseAuth.getInstance().getCurrentUser() != null) {
-            mostrarPendencias();
         }
         else{
             finish();
@@ -58,7 +63,4 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void mostrarPendencias() {
-
-    }
 }

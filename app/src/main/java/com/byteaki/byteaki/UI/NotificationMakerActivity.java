@@ -15,7 +15,10 @@ import com.firebase.client.Firebase;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,37 +32,70 @@ public class NotificationMakerActivity extends AppCompatActivity {
 
 
 
+String groupId;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification_maker);
 
+
+
+        if(!getIntent().hasExtra("group_name")) {
+            //Mensagem de erro
+            finish();
+        }
+
+       groupId= getIntent().getStringExtra("group_name");
+
+
+
+
+        FirebaseDatabase.getInstance().getReference("groups/"+groupId+"/name").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.getValue()!=null) {
+                    EditText grupo = (EditText) findViewById(R.id.Ask_Group);
+                    grupo.setText(dataSnapshot.getValue().toString());
+                    grupo.setEnabled(false);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
         Button enviar = (Button) findViewById(R.id.enviar_notificacao);
+
+
+
 
         enviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 EditText title=(EditText) findViewById(R.id.title_notification);
                 EditText description=(EditText) findViewById(R.id.Ask_Title_Notification);
-                List<Integer> idGroup = new ArrayList<Integer>();
-                idGroup.add(0);
-                idGroup.add(1);
+
 
 
 
 
                 FirebaseDatabase.getInstance()
-                        .getReference("users_notifications/"+FirebaseAuth.getInstance().getCurrentUser().getUid()).push()
+                        .getReference("users_notification/"+FirebaseAuth.getInstance().getCurrentUser().getUid()).push()
                         .setValue(new NotificationModel(title.getText().toString()
                                 ,description.getText().toString(), FirebaseAuth.
-                                getInstance().getCurrentUser().getEmail(),idGroup)).addOnCompleteListener(NotificationMakerActivity.this, new OnCompleteListener<Void>() {
+                                getInstance().getCurrentUser().getUid(),groupId)).addOnCompleteListener(NotificationMakerActivity.this, new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(NotificationMakerActivity.this,"Sucesso",Toast.LENGTH_SHORT).show();
+                            finish();
                         }else{
-                            Toast.makeText(NotificationMakerActivity.this,"Falha",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(NotificationMakerActivity.this,"Erro",Toast.LENGTH_SHORT).show();
 
                         }
                     }

@@ -10,9 +10,9 @@ public class NotificationModel {
     private String notificationTitle;
     private String notificationContent;
     private String notificationUser;
-    private List<Integer> notificationGroup;
+    private String notificationGroup;
 
-    public NotificationModel(String title, String description, String user,List<Integer> idGroup) {
+    public NotificationModel(String title, String description, String user, String idGroup) {
         notificationTitle=title;
         notificationUser=user;
         notificationContent=description;
@@ -43,11 +43,11 @@ public class NotificationModel {
         this.notificationUser = notificationUser;
     }
 
-    public List<Integer> getNotificationGroup() {
+    public String getNotificationGroup() {
         return notificationGroup;
     }
 
-    public void setNotificationGroup(List<Integer> notificationGroup) {
+    public void setNotificationGroup(String notificationGroup) {
         this.notificationGroup = notificationGroup;
     }
 }

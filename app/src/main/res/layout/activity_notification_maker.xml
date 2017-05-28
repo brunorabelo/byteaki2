@@ -27,7 +27,7 @@
         android:hint="Quais os detalhes?" />
 
 
-    <ListView
+    <EditText
         android:id="@+id/Ask_Group"
         android:layout_width="337dp"
         android:layout_height="65dp"
