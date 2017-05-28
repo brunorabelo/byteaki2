@@ -8,7 +8,12 @@ import com.firebase.client.Firebase;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.byteaki.byteaki.constants.Constants.FIREBASE_URL;
+
+
 public class NotificationMakerActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +24,7 @@ public class NotificationMakerActivity extends AppCompatActivity {
 
 
     void sendNotification(String user,final String message){
-        Firebase ref = new Firebase("");
+        Firebase ref = new Firebase(FIREBASE_URL);
         final Firebase notifications = ref.child("notificationRequests");
 
         Map notification = new HashMap<>();
