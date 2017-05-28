@@ -21,6 +21,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by macbook on 28/05/17.
  */
@@ -30,29 +34,44 @@ public class MyServices extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int StartId) {
 
-
-        if(FirebaseAuth.getInstance().getCurrentUser()!=null) {
-            FirebaseDatabase.getInstance().getReference("user_notification/" +
-                    FirebaseAuth.getInstance().getCurrentUser().getUid())
-                    .addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
+try {
+    if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+        FirebaseDatabase.getInstance().getReference("users_notification/" +
+                FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
 //                        if()
+                        if (dataSnapshot != null) {
+                            Map<String, String> map = (Map) dataSnapshot.getValue();
+                            if (map != null) {
+                                for (Map.Entry entry : map.entrySet()) {
+                                    Map valu = (HashMap) entry.getValue();
+                                    NotificationModel not = new NotificationModel(((HashMap)entry.getValue()).get("notificationTitle").toString(),
+                                            ((HashMap)(entry.getValue())).get("notificationContent").toString(),
+                                            (((HashMap)entry.getValue()).get("notificationUser")).toString(),((HashMap)(entry.getValue())).get("notificationGroup").toString());
 
-                            String a = "Brunofsdsa";
+//                                    String a = "Brunofsdsa";
+//                                    a.toString();
 
-                            a.toString();
+                                    notifyApp(not);
+
+                                }
+                            }
                         }
+                    }
 
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
 
-                        }
-                    });
+                    }
+                });
 
-        }
+    }
 
-
+}catch (Exception e){
+    e.getMessage();
+}
         return START_NOT_STICKY;
     }
 
@@ -66,7 +85,7 @@ public class MyServices extends Service {
 
 //
 //
-    public void notifyUpdateDisciplinas(NotificationModel notificacao) {
+    public void notifyApp(NotificationModel notificacao) {
 //        FirebaseAnalytics.getInstance(this).logEvent(FirebaseInterface.EVENT_USER_NOTIFIED,new Bundle());
         Context c = this;
 //        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
@@ -81,7 +100,7 @@ public class MyServices extends Service {
     private void showNotification(NotificationModel notificacao) {
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
-//                        .setSmallIcon(R.drawable.ic_exam)
+                        .setSmallIcon(R.drawable.common_full_open_on_phone)
                         .setContentTitle(notificacao.getNotificationTitle())
                         .setContentText(notificacao.getNotificationContent())
                         .setStyle(new NotificationCompat.BigTextStyle()
@@ -101,7 +120,7 @@ public class MyServices extends Service {
         mBuilder.setContentIntent(resultPendingIntent);
         NotificationManager mNotificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        mNotificationManager.notify(1, mBuilder.build());
+        mNotificationManager.notify(1,mBuilder.build());
     }
 
 }

@@ -15,7 +15,7 @@ import java.util.Calendar;
 public class AlarmClass extends AppCompatActivity {
     public static void iniciarAlarme(Context contexto) {
         AlarmManager gerenciador = (AlarmManager) contexto.getSystemService(Context.ALARM_SERVICE);
-        long frequenciaAtualizacao = 30*1000*60;
+        long frequenciaAtualizacao = 1000*60;
 
         gerenciador.setInexactRepeating(AlarmManager.ELAPSED_REALTIME, frequenciaAtualizacao,
                 frequenciaAtualizacao, obterIntentPendente(contexto));
