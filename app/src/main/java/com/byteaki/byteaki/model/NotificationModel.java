@@ -7,6 +7,7 @@ import java.util.List;
  */
 
 public class NotificationModel {
+    public static int cont=0;
     private String notificationTitle;
     private String notificationContent;
     private String notificationUser;
