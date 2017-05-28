@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1040730767132",
+    "firebase_url": "https://byteaki-e8ba0.firebaseio.com",
+    "project_id": "byteaki-e8ba0",
+    "storage_bucket": "byteaki-e8ba0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1040730767132:android:eb48483acef468d4",
+        "android_client_info": {
+          "package_name": "com.byteaki.byteaki"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1040730767132-d3n4mv169ktcmv43lnukhk28fc8p7dfj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSd6V3pvkF5-cI3I9TSSc2p78NXd7D2X0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
